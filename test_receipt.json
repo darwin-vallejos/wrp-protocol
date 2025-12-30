@@ -1,0 +1,11 @@
+{
+  "schema_version": "WRP-1.0",
+  "receipt_type": "decision",
+  "payload": {
+    "model": "example-model",
+    "input": "hello",
+    "output": "world",
+    "allowed": true
+  },
+  "receipt_hash": "9cb76b82f0c5f7775af8ca6cf5cf316a6a5043d0aa700ec8b688d1cbca25afbf"
+}
