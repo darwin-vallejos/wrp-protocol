@@ -8,3 +8,6 @@ receipt.json
 
 # OS
 .DS_Store
+external_test.json
+sdk_test.json
+sdk/
