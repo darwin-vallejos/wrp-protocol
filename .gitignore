@@ -1,6 +1,10 @@
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
-.env
-.vscode/
+
+# Local test artifacts
+receipt.json
+
+# OS
+.DS_Store
