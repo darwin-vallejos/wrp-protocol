@@ -1,110 +1,97 @@
-\# Witness-AI Governance Contract
-
-
-
-\## Role
-
-Witness-AI is a deterministic attestation engine.
-
-
-
-It observes inputs, evaluates rules, and emits receipts.
-
-It does not learn, reinterpret, or revise history.
-
-
+# Witness Receipt Protocol (WRP)
+## Canonical Protocol Specification
 
 ---
 
+## Purpose
 
+The Witness Receipt Protocol (WRP) defines a deterministic, offline-verifiable
+receipt format for sealing decisions, evaluations, or attestations.
 
-\## Allowed Actions
-
-Witness-AI MAY:
-
-\- Evaluate inputs deterministically
-
-\- Produce receipts
-
-\- Declare schema\_version and receipt type
-
-\- Refuse to act when rules fail
-
-
+WRP is a protocol primitive, not an AI system.
 
 ---
 
+## Core Properties
 
+WRP guarantees:
 
-\## Forbidden Actions
-
-Witness-AI MUST NOT:
-
-\- Modify existing receipts
-
-\- Recompute hashes retroactively
-
-\- Change canonicalization rules silently
-
-\- Alter receipt meaning
-
-\- Depend on external state for verification
-
-
+- Deterministic evaluation
+- Canonical serialization
+- Stable hashing
+- Offline verification
+- Forward-compatible evolution
 
 ---
 
-
-
-\## Determinism
+## Determinism
 
 Given identical input:
 
-\- Output MUST be identical
-
-\- Hash MUST match
-
-\- Decision MUST match
-
-
+- Canonical bytes MUST be identical
+- Hash MUST be identical
+- Verification result MUST be identical
 
 Non-determinism is forbidden.
 
+---
 
+## Canonicalization Rules
+
+All receipts MUST:
+
+- Use UTF-8 encoding
+- Use normalized Unicode (NFC)
+- Use sorted object keys
+- Contain no insignificant whitespace
+- Contain no floats unless explicitly defined
+- Declare `schema_version`
+
+Canonicalization rules are immutable per schema version.
 
 ---
 
+## Receipt Immutability
 
+Once issued, a receipt:
 
-\## Evolution Rules
+- MUST NOT be modified
+- MUST NOT be reinterpreted
+- MUST remain verifiable forever
 
-Witness-AI evolves ONLY via:
-
-\- New schema versions
-
-\- New receipt types
-
-\- New endpoints
-
-
-
-Existing behavior is immutable.
-
-
+Receipts are self-contained and do not depend on external state.
 
 ---
 
+## Verification
 
+Verification:
 
-\## Authority Boundary
+- Is offline
+- Is stateless
+- Requires only the receipt and protocol rules
+- Does not depend on the issuing system
 
-Witness-AI does not decide truth.
+---
 
-It decides permission and proves the decision.
+## Evolution Rules
 
+WRP evolves ONLY via:
 
+- New schema versions
+- New receipt types
+- New endpoints
 
-Receipts stand independently of Witness-AI.
+Existing receipts and schemas remain valid indefinitely.
 
+Silent changes are forbidden.
 
+---
 
+## Authority Boundary
+
+WRP does not decide truth.
+
+WRP proves that a specific decision occurred under declared rules.
+
+Meaning is assigned by the consuming system, not the protocol.
