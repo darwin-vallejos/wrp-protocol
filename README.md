@@ -1,35 +1,108 @@
-# Witness AI — Deterministic Decision Attestation
+# WRP — Witness Receipt Protocol
 
-Witness AI is a **deterministic, cryptographically verifiable decision-attestation system** for AI and automated workflows.
+**WRP (Witness Receipt Protocol)** is a deterministic, offline-verifiable
+receipt format for recording and proving AI decisions.
 
-It decides **whether** an action is allowed *before* an AI model responds and produces a **receipt** that any third party can independently verify offline — without trusting the AI, the operator, or Witness itself.
+It produces **tamper-evident cryptographic receipts** that can be verified
+independently, without network access, vendor trust, or centralized
+infrastructure.
 
-This repository contains the **reference implementation** of the Witness Receipt Format (WRF).
+WRP is designed for **audit-grade, high-stakes systems** where correctness,
+immutability, and post-hoc verification matter.
 
 ---
 
-## What Witness Is (and Is Not)
+## What Problem This Solves
 
-**Witness AI:**
-- Evaluates risk and trust *before* an AI acts
-- Produces immutable, verifiable receipts
-- Is deterministic and auditable
-- Works offline
-- Requires no cloud services
+Modern AI systems rely on logs, telemetry, or databases to record decisions.
+These mechanisms are:
 
-**Witness AI is NOT:**
-- A model
-- A learning system
-- A policy engine
+- Mutable
+- Vendor-controlled
+- Not independently verifiable
+- Unsuitable for litigation, defense, or regulatory audits
+
+**WRP replaces trust with proof.**
+
+Instead of logs, systems emit **cryptographic receipts** that mathematically
+prove:
+
+- *What decision was made*
+- *What data was used*
+- *When it occurred*
+- *That it has not been altered*
+
+---
+
+## Core Properties
+
+### 1. Deterministic Canonicalization
+The same logical payload always produces the same hash across:
+- Operating systems
+- Programming languages
+- Architectures
+
+No whitespace, ordering, encoding, or serialization ambiguity.
+
+---
+
+### 2. Offline Verification
+Receipts can be verified:
+- Air-gapped
+- In SCIFs
+- On isolated or classified systems
+- Years after generation
+
+No keys, servers, blockchains, or network access required.
+
+---
+
+### 3. Tamper Evidence
+Any modification—one byte or one field—breaks verification.
+
+Tampering is **mathematically detectable**, not heuristically inferred.
+
+---
+
+### 4. Protocol Immutability
+WRP v1.0 is **frozen**.
+
+Receipts generated under v1.0 remain valid forever.
+Any future changes require an explicit version bump.
+
+Silent evolution is forbidden.
+
+---
+
+## What WRP Is (and Is Not)
+
+**WRP is:**
+- A protocol
+- A receipt format
+- A verification contract
+- A trust-minimizing primitive
+
+**WRP is not:**
+- A logging system
+- A database
 - A blockchain
-- A logging framework
+- An observability platform
+- A vendor service
 
-Witness does not decide what is *true*.  
-It decides **whether an action is permitted** and proves that decision afterward.
+WRP integrates *alongside* existing systems without replacing them.
 
 ---
 
-## System Overview
+## Typical Use Cases
 
-High-level flow:
+- Autonomous systems (defense, robotics, vehicles)
+- Safety-critical AI pipelines
+- Regulatory compliance (EU AI Act, internal audits)
+- Incident reconstruction and forensics
+- Litigation-grade AI evidence
+- Model governance and accountability
+
+---
+
+## Repository Structure
 
